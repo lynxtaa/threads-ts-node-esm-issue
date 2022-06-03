@@ -6,4 +6,4 @@ const worker = await spawn<WorkerType>(new Worker('./worker'))
 const result = await worker.add(2, 2)
 await Thread.terminate(worker)
 
-console.log(result)
+console.log(`Result is`, result)
