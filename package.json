@@ -1,20 +1,19 @@
 {
-  "name": "threads-ts-node-esm-issue",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "engines": {
-    "node": ">=16.13.0"
-  },
-  "scripts": {
-    "start": "node --loader ts-node/esm src/index.ts"
-  },
-  "dependencies": {
-    "threads": "^1.7.0",
-    "ts-node": "^10.8.0"
-  },
-  "devDependencies": {
-    "@types/node": "^16.11.38",
-    "typescript": "^4.7.2"
-  }
+	"name": "threads-ts-node-esm-issue",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=16.13.0"
+	},
+	"scripts": {
+		"start": "node --loader ts-node/esm src/index.ts"
+	},
+	"dependencies": {
+		"ts-node": "^10.8.0"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.38",
+		"typescript": "^4.7.2"
+	}
 }

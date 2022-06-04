@@ -1,9 +1,18 @@
-import { spawn, Worker, Thread } from 'threads'
+import { Worker } from 'node:worker_threads'
 
-import { WorkerType } from './worker.js'
+const worker = new Worker(new URL('./worker.ts', import.meta.url), {
+	workerData: [2, 2],
+	execArgv: ['--loader', 'ts-node/esm'],
+})
 
-const worker = await spawn<WorkerType>(new Worker('./worker'))
-const result = await worker.add(2, 2)
-await Thread.terminate(worker)
+const result = await new Promise<number>((resolve, reject) => {
+	worker.on('message', resolve)
+	worker.on('error', reject)
+	worker.on('exit', (code) => {
+		if (code !== 0) {
+			reject(new Error(`Worker stopped with exit code ${code}`))
+		}
+	})
+})
 
-console.log(`Result is`, result)
+console.log(result)

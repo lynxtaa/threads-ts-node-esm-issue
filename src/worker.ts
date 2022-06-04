@@ -1,11 +1,5 @@
-import { expose } from 'threads/worker'
+import { parentPort, workerData } from 'node:worker_threads'
 
-const worker = {
-	add(a: number, b: number): number {
-		return a + b
-	},
-}
+const [a, b] = workerData
 
-export type WorkerType = typeof worker
-
-expose(worker)
+parentPort?.postMessage(a + b)
